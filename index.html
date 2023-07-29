@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,36 @@
         <input type="text" id="cityInput" placeholder="Enter city name">
         <button onclick="getWeather()">Get Weather</button>
         <div id="weatherInfo"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header-strip">
+        <h1>Weather Forecast</h1>
+    </header>
+    <div class="container">
+        <h2>Search Location:</h2>
+        <form id="searchForm">
+            <input type="text" id="cityInput" placeholder="Enter city name">
+            <button type="submit">Search</button>
+        </form>
+        <div class="previous-searches">
+            <!-- Area to display previous searches, this will be updated dynamically using JavaScript -->
+        </div>
+        <div id="weatherInfo">
+            <!-- Area to display the 5-day forecast or the animation, this will be updated dynamically using JavaScript -->
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

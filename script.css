@@ -1,26 +1,68 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.header-strip {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
 }
 
 .container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-input {
-    width: 100%;
-    padding: 10px;
+h2 {
     margin-bottom: 10px;
 }
 
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input {
+    width: 70%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.previous-searches {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 #weatherInfo {
     margin-top: 20px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
 }
+
+/* Add more CSS rules for weather cards and animations as needed */
