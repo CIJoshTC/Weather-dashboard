@@ -30,6 +30,13 @@ function showPreviousSearches() {
     previousSearchContainer.classList.remove('hidden');
 }
 
+// Function to update and render previous searches list
+function updatePreviousSearches(city) {
+    const listItem = document.createElement('li');
+    listItem.textContent = city;
+    previousSearchList.appendChild(listItem);
+}
+
 
 // Function to fetch weather data for a specific city
 function getWeatherData(city) {
