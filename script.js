@@ -26,6 +26,10 @@ document.getElementById('searchForm').addEventListener('submit', function (event
 });
 
 
+function showPreviousSearches() {
+    previousSearchContainer.classList.remove('hidden');
+}
+
 
 // Function to fetch weather data for a specific city
 function getWeatherData(city) {
@@ -76,24 +80,17 @@ function getWeatherData(city) {
                     weatherCardsContainer.appendChild(card); // Append the card to the weatherCardsContainer
                 }
 
-                // Function to update and render previous searches list
-                function updatePreviousSearches(city) {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = city;
-                    previousSearchList.appendChild(listItem);
-                    previousSearchList.classList.remove('hidden');
-                }
-
-
                 // Update the previous searches list
                 updatePreviousSearches(city);
+
+                // Show the previous searches container and list
+                showPreviousSearches();
             }
         })
         .catch((error) => {
             console.error('Error fetching weather data:', error);
         });
 }
-
 // Function to group forecasts by date
 function groupForecastsByDate(forecasts) {
     const today = new Date().toDateString();

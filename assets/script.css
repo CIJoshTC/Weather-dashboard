@@ -1,23 +1,23 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: hwb(196 79% 11%);
+    background-color: #4d4dff; /* Darker blue background */
+    color: #fff;
 }
 
 .header-strip {
     background-color: #007bff;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    color: #fff;
 }
 
 .container {
-    max-width: 400px;
+    max-width: 800px; /* Increase container width */
     margin: 20px auto;
     padding: 20px;
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
@@ -55,11 +55,6 @@ button {
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
-    color: white;
-}
-
-.hidden {
-    display: none;
 }
 
 #weatherInfo {
@@ -75,25 +70,24 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  
-  /* Style the individual cards */
-  .card {
+}
+
+/* Style the individual cards */
+.card {
     width: calc(20% - 20px); /* Set the width of each card (adjust as needed) */
     margin-bottom: 20px; /* Add some space between cards */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Add a light shadow */
     border-radius: 8px; /* Add beveled corners */
     padding: 10px; /* Add some padding inside the cards */
-  }
-  
-  /* Add styles for card header */
-  .card .title {
+}
+
+/* Add styles for card header */
+.card .title {
     font-size: 18px;
     font-weight: bold;
-  }
-  
-  /* Add styles for forecast items */
-  .card p {
+}
+
+/* Add styles for forecast items */
+.card p {
     margin: 5px 0;
-  }
-  
+}
