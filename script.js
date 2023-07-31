@@ -1,5 +1,3 @@
-
-
 const apiKey = '52017217fdbd2a28a829344d4614e7f1';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
 const previousSearchList = document.getElementById('previousSearchList');
@@ -44,40 +42,40 @@ function getWeatherData(city) {
                 weatherCardsContainer.innerHTML = ''; 
                 weatherCardsContainer.style.display = 'flex'; 
 
-                const cityName = data.city.name;
-                const locationHeader = document.createElement('h3');
-                locationHeader.textContent = cityName;
-                weatherCardsContainer.appendChild(locationHeader);
+       const cityName = data.city.name;
+       const locationHeader = document.createElement('h3');
+         locationHeader.textContent = cityName;
+         weatherCardsContainer.appendChild(locationHeader);
 
                 
-                const forecastsByDate = groupForecastsByDate(data.list);
+       const forecastsByDate = groupForecastsByDate(data.list);
 
                
-                for (const date in forecastsByDate) {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
+          for (const date in forecastsByDate) {
+             const card = document.createElement('div');
+             card.classList.add('card');
 
-                    const cardContent = document.createElement('div');
-                    cardContent.classList.add('card-content');
+             const cardContent = document.createElement('div');
+              cardContent.classList.add('card-content');
 
-                    const cardHeader = document.createElement('p');
-                    cardHeader.classList.add('title', 'is-5', 'has-text-centered', 'mb-4');
-                    cardHeader.style.fontSize = '20px'; 
-                    cardHeader.style.fontWeight = 'bold'; 
-                    cardHeader.textContent = date; 
-                    cardContent.appendChild(cardHeader);
+             const cardHeader = document.createElement('p');
+              cardHeader.classList.add('title', 'is-5', 'has-text-centered', 'mb-4');
+              cardHeader.style.fontSize = '20px'; 
+              cardHeader.style.fontWeight = 'bold'; 
+              cardHeader.textContent = date; 
+              cardContent.appendChild(cardHeader);
 
-                    const cardDescription = document.createElement('div');
-                    for (const forecast of forecastsByDate[date]) {
-                        const forecastItem = document.createElement('p');
-                        forecastItem.textContent = forecast;
-                        cardDescription.appendChild(forecastItem);
-                    }
+             const cardDescription = document.createElement('div');
+          for (const forecast of forecastsByDate[date]) {
+             const forecastItem = document.createElement('p');
+                   forecastItem.textContent = forecast;
+                   cardDescription.appendChild(forecastItem);
+             }
                     cardContent.appendChild(cardDescription);
 
                     card.appendChild(cardContent);
                     weatherCardsContainer.appendChild(card); 
-                }
+           }
 
                 
                 updatePreviousSearches(city);
