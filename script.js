@@ -7,6 +7,8 @@
 // javascript
 const apiKey = '52017217fdbd2a28a829344d4614e7f1';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
+const previousSearchList = document.getElementById('previousSearchList');
+const weatherCardsContainer = document.getElementById('weatherCardsContainer');
 
 // Function to handle form submission
 document.getElementById('searchForm').addEventListener('submit', function (event) {
@@ -23,17 +25,8 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     getWeatherData(city);
 });
 
-    // Add the searched city to the previous searches list
-    updatePreviousSearches(city);
 
 
-// Function to update and render previous searches list
-function updatePreviousSearches(city) {
-    const previousSearchList = document.getElementById('previousSearchList');
-    const listItem = document.createElement('li');
-    listItem.textContent = city;
-    previousSearchList.appendChild(listItem);
-}
 // Function to fetch weather data for a specific city
 function getWeatherData(city) {
     const apiUrl = `${baseUrl}?q=${city}&appid=${apiKey}`;
@@ -44,22 +37,19 @@ function getWeatherData(city) {
             if (data.cod === '404') {
                 alert('City not found');
             } else {
-                const weatherInfoDiv = document.getElementById('weatherInfo');
-                weatherInfoDiv.innerHTML = ''; // Clear any previous content
+                weatherCardsContainer.innerHTML = ''; // Clear any previous content
+                weatherCardsContainer.style.display = 'flex'; // Show the weather cards container
 
                 // Display the location name
                 const cityName = data.city.name;
                 const locationHeader = document.createElement('h3');
                 locationHeader.textContent = cityName;
-                weatherInfoDiv.appendChild(locationHeader);
+                weatherCardsContainer.appendChild(locationHeader);
 
                 // Group forecasts by date
                 const forecastsByDate = groupForecastsByDate(data.list);
 
                 // Display the 5-day forecast using Bulma cards
-                const weatherCardsDiv = document.createElement('div');
-                weatherCardsDiv.classList.add('weather-cards'); // Add the 'weather-cards' class
-
                 for (const date in forecastsByDate) {
                     const card = document.createElement('div');
                     card.classList.add('card');
@@ -68,8 +58,10 @@ function getWeatherData(city) {
                     cardContent.classList.add('card-content');
 
                     const cardHeader = document.createElement('p');
-                    cardHeader.classList.add('title', 'is-5');
-                    cardHeader.textContent = date;
+                    cardHeader.classList.add('title', 'is-5', 'has-text-centered', 'mb-4');
+                    cardHeader.style.fontSize = '20px'; // Set the font size to 20px
+                    cardHeader.style.fontWeight = 'bold'; // Set the font weight to bold
+                    cardHeader.textContent = date; // Use the date directly without numbering
                     cardContent.appendChild(cardHeader);
 
                     const cardDescription = document.createElement('div');
@@ -81,10 +73,20 @@ function getWeatherData(city) {
                     cardContent.appendChild(cardDescription);
 
                     card.appendChild(cardContent);
-                    weatherCardsDiv.appendChild(card); // Append the card to the weatherCardsDiv
+                    weatherCardsContainer.appendChild(card); // Append the card to the weatherCardsContainer
                 }
 
-                weatherInfoDiv.appendChild(weatherCardsDiv); // Append weatherCardsDiv to the main container
+                // Function to update and render previous searches list
+                function updatePreviousSearches(city) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = city;
+                    previousSearchList.appendChild(listItem);
+                    previousSearchList.classList.remove('hidden');
+                }
+
+
+                // Update the previous searches list
+                updatePreviousSearches(city);
             }
         })
         .catch((error) => {
@@ -94,13 +96,35 @@ function getWeatherData(city) {
 
 // Function to group forecasts by date
 function groupForecastsByDate(forecasts) {
+    const today = new Date().toDateString();
     const forecastsByDate = {};
-    for (const forecast of forecasts) {
+
+    // Filter out the current day's forecast
+    const forecastsForNextDays = forecasts.filter((forecast) => {
+        return new Date(forecast.dt * 1000).toDateString() !== today;
+    });
+
+    for (const forecast of forecastsForNextDays) {
         const date = new Date(forecast.dt * 1000).toDateString();
         if (!forecastsByDate[date]) {
             forecastsByDate[date] = [];
         }
-        forecastsByDate[date].push(`${forecast.weather[0].description}, Temperature: ${(forecast.main.temp - 273.15).toFixed(2)}°C`);
+        forecastsByDate[date].push(
+            `${forecast.weather[0].description}, Temperature: ${(forecast.main.temp - 273.15).toFixed(2)}°C`
+        );
     }
-    return forecastsByDate;
+
+    // Convert the grouped forecasts into an array and keep only the first five items
+    return forecastsByDate
 }
+
+// Function to get the day name
+function getDayName(dayIndex) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[dayIndex];
+}
+
+
+
+
+

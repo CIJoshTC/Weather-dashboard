@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: hwb(196 79% 11%);
 }
 
 .header-strip {
@@ -51,10 +51,15 @@ button {
 }
 
 .previous-searches {
-    background-color: #0c41e0;
+    background-color: #007bff;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
+    color: white;
+}
+
+.hidden {
+    display: none;
 }
 
 #weatherInfo {
@@ -65,16 +70,30 @@ button {
     background-color: #0c41e0;
 }
 
+/* Add this style to position cards horizontally */
 .weather-cards {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-}
-
-.card {
-    width: 200px; /* Adjust this width to control the size of each card */
-    margin: 10px; /* Add margin to create gaps between the cards */
-    /* OR use padding instead of margin if you prefer */
-    /* padding: 10px; */
-}
-/* Add more CSS rules for weather cards and animations as needed */
+    justify-content: space-between;
+  }
+  
+  /* Style the individual cards */
+  .card {
+    width: calc(20% - 20px); /* Set the width of each card (adjust as needed) */
+    margin-bottom: 20px; /* Add some space between cards */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Add a light shadow */
+    border-radius: 8px; /* Add beveled corners */
+    padding: 10px; /* Add some padding inside the cards */
+  }
+  
+  /* Add styles for card header */
+  .card .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Add styles for forecast items */
+  .card p {
+    margin: 5px 0;
+  }
+  
